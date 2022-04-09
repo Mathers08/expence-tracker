@@ -1,17 +1,22 @@
 import React, {useContext} from 'react';
 import styled from 'styled-components';
-import {GlobalContext} from "../Context/GlobalState";
+import {useTypedSelector} from "../hooks";
 
 const IncomeExpenses = () => {
+  const {transactions} = useTypedSelector(state => state.transaction);
+  const amount = transactions.map(transaction => transaction.amount);
+  const income = amount.filter(sum => sum >= 0).reduce((acc, val) => acc += val, 0).toFixed(2);
+  const expense = (amount.filter(sum => sum < 0).reduce((acc, val) => acc += val, 0) * -1).toFixed(2);
+
   return (
     <ListGroup>
       <ListGroupItem>
         <Income>Income</Income>
-        <Span>${0.00}</Span>
+        <Span>${income}</Span>
       </ListGroupItem>
       <ListGroupItem>
         <Expense>Expense</Expense>
-        <Span>${0.00}</Span>
+        <Span>${expense}</Span>
       </ListGroupItem>
     </ListGroup>
   );

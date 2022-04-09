@@ -1,24 +1,28 @@
-import React, {useContext} from 'react';
+import React from 'react';
 import Transaction from "./Transaction";
 import styled from 'styled-components';
-import {GlobalContext} from "../Context/GlobalState";
+import {useTypedDispatch, useTypedSelector} from "../hooks";
+import {clearTransactions} from "../store/reducers/transaction";
 
 const TransactionList = () => {
+  const dispatch = useTypedDispatch();
+  const {transactions} = useTypedSelector(state => state.transaction);
+  const onClearClick = () => dispatch(clearTransactions());
+
   return (
     <List>
       <Header>History</Header>
       <ListGroup>
-        {/*{
-          transactions.length
-            ? transactions.map(transaction => (
-              <Transaction
-                key={transaction.id}
-                transaction={transaction}
-              />))
-            : <Paragraph>There are no transactions yet</Paragraph>
-        }*/}
+        {transactions.length
+          ? transactions.map(transaction => (
+            <Transaction
+              key={transaction.id}
+              transaction={transaction}
+            />))
+          : <Paragraph>There are no transactions yet</Paragraph>
+        }
       </ListGroup>
-      <Button color="danger">Clear All</Button>
+      <Button color="danger" onClick={onClearClick}>Clear All</Button>
     </List>
   );
 };

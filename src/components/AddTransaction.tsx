@@ -1,20 +1,51 @@
-import React, {useContext, useState} from 'react';
-import {Form, FormGroup, Label, Input} from "reactstrap";
+import React, {useState} from 'react';
 import styled from 'styled-components';
-import {GlobalContext} from "../Context/GlobalState";
+import {useTypedDispatch} from "../hooks";
+import {addTransaction} from "../store/reducers/transaction";
 
 const AddTransaction = () => {
+  const [text, setText] = useState('');
+  const [amount, setAmount] = useState('');
+  const onTextChange = (e: React.ChangeEvent<HTMLInputElement>) => setText(e.target.value);
+  const onAmountChange = (e: React.ChangeEvent<HTMLInputElement>) => setAmount(e.target.value);
+  const dispatch = useTypedDispatch();
+
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    const newTransaction = {
+      id: Date.now(),
+      text,
+      amount: +amount
+    }
+    if (text) {
+      dispatch(addTransaction(newTransaction));
+      setText('');
+      setAmount('');
+    }
+  }
+
   return (
     <div>
       <Header>Add Transaction</Header>
-      <form action="">
+      <form onSubmit={handleSubmit}>
         <div>
-          <label htmlFor="">Text</label>
-          <input type="text"/>
+          <label htmlFor="text">Text</label>
+          <input
+            type="text"
+            value={text}
+            onChange={onTextChange}
+            maxLength={16}
+            placeholder="Enter text..."
+          />
         </div>
         <div>
-          <label htmlFor="">Amount</label>
-          <input type="number"/>
+          <label htmlFor="amount">Amount</label>
+          <input
+            type="number"
+            value={amount}
+            onChange={onAmountChange}
+            placeholder="Enter amount..."
+          />
         </div>
         <Button>Add Transaction</Button>
       </form>

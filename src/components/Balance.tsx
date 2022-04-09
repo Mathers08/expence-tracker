@@ -1,12 +1,17 @@
 import React, {useContext} from 'react';
-import {GlobalContext} from "../Context/GlobalState";
 import styled from 'styled-components';
+import {useTypedSelector} from "../hooks";
 
 const Balance = () => {
+  const {transactions} = useTypedSelector(state => state.transaction);
+  const amount = transactions.map(transaction => transaction.amount);
+  const total = amount.reduce((acc, val) => acc += val, 0);
+  const sign = total >= 0 ? '' : '-';
+
   return (
     <Main>
       <h3>Your Balance:</h3>
-      <h1>$0.00</h1>
+      <h1>{sign}${Math.abs(total).toFixed(2)}</h1>
     </Main>
   );
 };
