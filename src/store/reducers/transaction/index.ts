@@ -1,6 +1,5 @@
 import {ITransaction} from "./types";
 import {createSlice, PayloadAction} from "@reduxjs/toolkit";
-import React from "react";
 
 const initialState = {
   transactions: [] as ITransaction[]
@@ -14,7 +13,8 @@ export const transactionSlice = createSlice({
       state.transactions.push(action.payload);
     },
     deleteTransaction(state, action: PayloadAction<number>) {
-      state.transactions.filter(transaction => transaction.id !== action.payload);
+      const index = state.transactions.findIndex(transaction => transaction.id === action.payload);
+      state.transactions.splice(index, 1);
     },
     clearTransactions(state) {
       state.transactions = []
