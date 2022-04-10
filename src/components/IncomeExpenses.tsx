@@ -1,4 +1,4 @@
-import React, {useContext} from 'react';
+import React from 'react';
 import styled from 'styled-components';
 import {useTypedSelector} from "../hooks";
 
@@ -12,11 +12,11 @@ const IncomeExpenses = () => {
     <ListGroup>
       <ListGroupItem>
         <Income>Income</Income>
-        <Span>${income}</Span>
+        <span>${income}</span>
       </ListGroupItem>
       <ListGroupItem>
         <Expense>Expense</Expense>
-        <Span>${expense}</Span>
+        <span>${expense}</span>
       </ListGroupItem>
     </ListGroup>
   );
@@ -24,33 +24,28 @@ const IncomeExpenses = () => {
 
 const ListGroup = styled.ul`
   display: flex;
-  justify-content: center;
-  font-family: monospace;
-  flex-direction: row;
+  justify-content: space-evenly;
   padding-left: 0;
-  margin-bottom: 0;
-  border-radius: 0.25rem;
 `;
 const ListGroupItem = styled.li`
+  box-shadow: rgb(0 0 0 / 35%) 0 5px 15px;
+  border-radius: 20px;
   text-align: center;
   font-size: 20px;
-  font-weight: 500;
-  position: relative;
+  color: #fff;
+  background-color: #3e3939;
   display: block;
-  padding: 0.75rem 1.25rem;
-  background-color: #fff;
-  border: 1px solid rgba(0, 0, 0, 0.125);
+  padding: 15px 25px;
 `;
 const Income = styled.div`
   background-color: #3ebf4f;
-  padding: 10px 40px;
+  padding: 8px 45px;
+  margin: 10px 0;
 `;
 const Expense = styled.div`
   background-color: #fa2a3d;
-  padding: 10px 40px;
-`;
-const Span = styled.span`
-  color: #000;
+  padding: 8px 40px;
+  margin: 10px 0;
 `;
 
 export default IncomeExpenses;

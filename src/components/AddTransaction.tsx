@@ -25,48 +25,71 @@ const AddTransaction = () => {
   }
 
   return (
-    <div>
+    <AddTransactionBlock>
       <Header>Add Transaction</Header>
       <form onSubmit={handleSubmit}>
-        <div>
+        <FormItem>
           <label htmlFor="text">Text</label>
-          <input
+          <InputField
             type="text"
             value={text}
             onChange={onTextChange}
             maxLength={16}
             placeholder="Enter text..."
           />
-        </div>
-        <div>
+        </FormItem>
+        <FormItem>
           <label htmlFor="amount">Amount</label>
-          <input
+          <InputField
             type="number"
             value={amount}
             onChange={onAmountChange}
             placeholder="Enter amount..."
           />
-        </div>
+        </FormItem>
         <Button>Add Transaction</Button>
       </form>
-    </div>
+    </AddTransactionBlock>
   );
 };
 
-const Header = styled.h3`
+const AddTransactionBlock = styled.div`
+  padding: 20px 0;
+`;
+const Header = styled.h2`
   padding: 15px;
   text-align: center;
-  border-bottom: 2px solid white;
+  border-bottom: 2px solid #414040;
 `;
-
+const FormItem = styled.div`
+  display: flex;
+  flex-direction: column;
+  margin: 0 25px 15px;
+`;
+const InputField = styled.input`
+  margin: 7px 0;
+  padding: 13px 10px;
+  border-radius: 13px;
+  font-size: 14px;
+  font-family: monospace;
+  font-weight: 600;
+  box-shadow: rgb(0 0 0 / 45%) 0px 25px 20px -20px;
+`;
 const Button = styled.button`
-  margin: 25px 0;
-  padding: 5px;
-  width: 100%;
-  border-radius: 7px;
+  margin: 25px auto;
+  padding: 15px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 75%;
+  border-radius: 15px;
   background-color: #5167ff;
   border: none;
-  color: #fff;
+  color: aliceblue;
+  font-weight: 700;
+  font-size: 16px;
+  font-family: monospace;
+  cursor: pointer;
 `;
 
 export default AddTransaction;

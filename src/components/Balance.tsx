@@ -10,14 +10,24 @@ const Balance = () => {
 
   return (
     <Main>
-      <h3>Your Balance:</h3>
-      <h1>{sign}${Math.abs(total).toFixed(2)}</h1>
+      <H1>Your Balance:</H1>
+      <Paragraph>{sign}${Math.abs(total).toFixed(2)}</Paragraph>
     </Main>
   );
 };
 
 const Main = styled.main`
-  padding: 40px 0;
+  padding: 40px;
+`;
+
+const H1 = styled.h1`
+  font-size: 42px;
+  margin: 0;
+`;
+const Paragraph = styled.p`
+  margin: 0;
+  font-size: 34px;
+  font-weight: 700;
 `;
 
 export default Balance;
