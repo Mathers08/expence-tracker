@@ -17,7 +17,7 @@ const AddTransaction = () => {
       text,
       amount: +amount
     }
-    if (text) {
+    if (text && amount) {
       dispatch(addTransaction(newTransaction));
       setText('');
       setAmount('');
@@ -34,7 +34,7 @@ const AddTransaction = () => {
             type="text"
             value={text}
             onChange={onTextChange}
-            maxLength={16}
+            maxLength={22}
             placeholder="Enter text..."
           />
         </FormItem>

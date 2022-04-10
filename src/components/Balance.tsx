@@ -1,4 +1,4 @@
-import React, {useContext} from 'react';
+import React from 'react';
 import styled from 'styled-components';
 import {useTypedSelector} from "../hooks";
 
@@ -9,17 +9,16 @@ const Balance = () => {
   const sign = total >= 0 ? '' : '-';
 
   return (
-    <Main>
+    <BalanceBlock>
       <H1>Your Balance:</H1>
       <Paragraph>{sign}${Math.abs(total).toFixed(2)}</Paragraph>
-    </Main>
+    </BalanceBlock>
   );
 };
 
-const Main = styled.main`
+const BalanceBlock = styled.div`
   padding: 40px;
 `;
-
 const H1 = styled.h1`
   font-size: 42px;
   margin: 0;

@@ -16,8 +16,10 @@ const Transaction = ({transaction}: TransactionProps) => {
   return (
     <ListGroupItem transaction={transaction}>
       <h4>{transaction.text}</h4>
-      <h4>{sign}${Math.abs(transaction.amount)}</h4>
-      <Button onClick={onDeleteClick}>X</Button>
+      <SalaryDeleteBlock>
+        <h4>{sign}${Math.abs(transaction.amount)}</h4>
+        <Button onClick={onDeleteClick}>X</Button>
+      </SalaryDeleteBlock>
     </ListGroupItem>
   );
 };
@@ -34,11 +36,15 @@ const ListGroupItem = styled.ul<TransactionProps>`
   color: aliceblue;
   background-color: ${props => props.transaction.amount >= 0 ? '#3ebf4f' : '#fa2a3d'};
 `;
+const SalaryDeleteBlock = styled.div`
+  display: flex;
+  flex-direction: row;
+`;
 const Button = styled.button`
   cursor: pointer;
   color: aliceblue;
   font-weight: 700;
-  padding: 0 5px;
+  padding-left: 50px;
   font-size: 15px;
   border: 2px solid transparent;
   background: none;

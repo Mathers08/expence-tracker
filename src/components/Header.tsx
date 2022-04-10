@@ -3,13 +3,13 @@ import styled from 'styled-components';
 
 const Header = () => {
   return (
-    <StyledHeader>
+    <HeaderBlock>
       Expense Tracker
-    </StyledHeader>
+    </HeaderBlock>
   );
 };
 
-const StyledHeader = styled.header`
+const HeaderBlock = styled.header`
   padding: 25px;
   text-align: center;
   font-size: 30px;
